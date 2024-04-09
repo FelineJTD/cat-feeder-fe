@@ -35,7 +35,7 @@
         Jadi, kalian bisa nonton kucing-kucing ITB sambil kasih makan mereka dari jarak jauh. 
         Scroll ke bawah untuk liat live stream dari kamera-kamera kami!
       </p>
-      <NuxtLink to="/cam/1" class="mt-4 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-[-4px_4px] hover:mt-3 hover:ml-1">Liat kucing maem!</NuxtLink>
+      <NuxtLink to="/cam/1" class="hover:mt-5 hover:ml-0 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-none shadow-[-4px_4px] mt-4 ml-1 duration-150">Liat kucing maem!</NuxtLink>
       <!-- RIGHT DECOR -->
       <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4 hidden lg:block border-white">
         <img src="/decors/arrows.svg" alt="" />
