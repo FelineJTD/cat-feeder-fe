@@ -7,7 +7,7 @@
   }),
 
   onMounted(() => {
-    if (window.innerWidth > 768 && window.innerHeight > 1024) {
+    if (window.innerWidth > 768 && window.innerHeight > 600) {
       window.onscroll = function(e) {
         if (this.oldScroll < this.scrollY) {
           navigateTo('/cam/1')
