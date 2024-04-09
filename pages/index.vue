@@ -20,13 +20,13 @@
 <template>
   <div>
     <img src="https://picsum.photos/1920/1080" alt="Background" class="fixed top-0 left-0 h-screen w-full object-cover -z-10" />
-    <div class="h-[calc(100vh+0.5px)] w-full flex flex-col -pt-[0.5px] px-32 bg-neutral-950/50 text-white">
+    <div class="h-[calc(100vh+0.5px)] w-full flex flex-col -pt-[0.5px] py-48 px-8 md:px-16 lg:px-32 bg-neutral-950/50 text-white">
       <!-- COPYRIGHT (TOP BORDER) -->
-      <div class="absolute left-0 top-16 border-t-2 border-white w-[calc(100%-8rem)] pt-2">
-        <p class="text-xs text-right">Made with <3 for IF4051 by <span class="font-header text-primary">Clair, Addin, Felicia, Fandi, & Anggie</span> © 2024</p>
+      <div class="absolute left-0 top-16 border-t-2 border-white w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] pt-2">
+        <p class="text-xs text-right">Made with &lt;3 for IF4051 by <span class="font-header text-primary"><br class="md:hidden" />Clair, Addin, Felicia, Fandi, & Anggie</span> © 2024</p>
       </div>
       <!-- LOGO & DESCRIPTION (MAIN) -->
-      <div class="border-l-4 border-white h-1/2 flex items-end pl-12">
+      <div class="md:border-l-4 border-white md:h-1/2 flex items-end md:pl-12">
         <img src="/logo.svg" alt="Liat Kucing Maem" class="h-[120px] aspect-auto w-fit" height="120" />
       </div>
       <p class="leading-9 lg:w-2/3 xl:w-1/2 mt-12">
