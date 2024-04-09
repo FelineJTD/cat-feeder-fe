@@ -39,7 +39,7 @@
         Scroll ke bawah untuk liat live stream dari kamera-kamera kami!
       </p>
       <!-- RIGHT DECOR -->
-      <div class="absolute right-32 bottom-0 border-r-2 pt-4 pr-4">
+      <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4">
         <img src="/decors/arrows.svg" alt="" />
       </div>
       <!-- <NuxtLink to="/test" class="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md">Liat Kucing</NuxtLink> -->
