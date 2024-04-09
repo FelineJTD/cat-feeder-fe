@@ -7,22 +7,20 @@
   }),
 
   onMounted(() => {
-    // on mouse scroll, change page
-    window.addEventListener('scroll', () => {
-      const scroll = window.scrollY
-      if (scroll > 0) {
+    window.onscroll = function(e) {
+      if (this.oldScroll < this.scrollY) {
         navigateTo('/cam/1')
-      } 
-    })
+      }
+      this.oldScroll = this.scrollY;
+    }
   })
-
 
 </script>
 
 <template>
   <div>
     <img src="https://picsum.photos/1920/1080" alt="Background" class="fixed top-0 left-0 h-screen w-full object-cover -z-10" />
-    <div class="h-[calc(100vh+1px)] w-full flex flex-col -pt-[1px] px-32 bg-neutral-950/50 text-white">
+    <div class="h-[calc(100vh+0.5px)] w-full flex flex-col -pt-[0.5px] px-32 bg-neutral-950/50 text-white">
       <!-- COPYRIGHT (TOP BORDER) -->
       <div class="absolute left-0 top-16 border-t-2 border-white w-[calc(100%-8rem)] pt-2">
         <p class="text-xs text-right">Made with <3 for IF4051 by <span class="font-header text-primary">Clair, Addin, Felicia, Fandi, & Anggie</span> © 2024</p>
@@ -39,7 +37,7 @@
       </p>
       <NuxtLink to="/cam/1" class="mt-4 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-[-4px_4px] hover:mt-3 hover:ml-1">Liat kucing maem!</NuxtLink>
       <!-- RIGHT DECOR -->
-      <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4">
+      <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4 hidden lg:block">
         <img src="/decors/arrows.svg" alt="" />
       </div>
     </div>
