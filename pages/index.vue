@@ -7,11 +7,13 @@
   }),
 
   onMounted(() => {
-    window.onscroll = function(e) {
-      if (this.oldScroll < this.scrollY) {
-        navigateTo('/cam/1')
+    if (window.innerWidth > 768 && window.innerHeight > 1024) {
+      window.onscroll = function(e) {
+        if (this.oldScroll < this.scrollY) {
+          navigateTo('/cam/1')
+        }
+        this.oldScroll = this.scrollY;
       }
-      this.oldScroll = this.scrollY;
     }
   })
 
@@ -27,14 +29,14 @@
       </div>
       <!-- LOGO & DESCRIPTION (MAIN) -->
       <div class="mobile-landscape:border-none mobile-landscape:pl-0 md:border-l-4 border-white md:h-1/2 flex items-end md:pl-12 mobile-landscape:items-start">
-        <img src="/logo.svg" alt="Liat Kucing Maem" class="h-[120px] max-w-[75vw] aspect-auto w-fit mobile-landscape:w-48" height="120" />
+        <img src="/logo.svg" alt="Liat Kucing Maem" class="h-[120px] max-w-[50vw] aspect-auto w-fit mobile-landscape:w-48" height="120" />
       </div>
       <div class="flex flex-col">
-        <p class="leading-9 lg:w-2/3 xl:w-1/2 mt-12 mobile-landscape:mt-0">
+        <p class="leading-9 lg:w-2/3 xl:w-1/2 mt-4 md:mt-12 mobile-landscape:mt-0">
           <span class="hidden mobile-landscape:hidden md:inline">Siapa sih yang gak suka liat kucing-kucing ITB? Sekarang, kamu gak usah datang ke kampus buat liat kucing! </span>
           Website ini hadir dengan <span class="text-primary font-header text-2xl">live stream pos-pos makanan kucing</span> yang tersebar di seluruh kampus.
           Jadi, kalian bisa nonton kucing-kucing ITB sambil kasih makan mereka dari jarak jauh. 
-          <span class="inline mobile-landscape:hidden">Scroll ke bawah untuk liat live stream dari kamera-kamera kami!</span>
+          <span class="hidden md:inline mobile-landscape:hidden">Scroll ke bawah untuk liat live stream dari kamera-kamera kami!</span>
         </p>
         <NuxtLink to="/cam/1" class="hover:mt-5 hover:ml-0 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-none shadow-[-4px_4px] mt-4 ml-1 duration-150 block mobile-landscape:self-end">Liat kucing maem!</NuxtLink>
       </div>
