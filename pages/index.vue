@@ -1,6 +1,5 @@
 <script setup>
   import { onMounted, onBeforeMount } from 'vue'
-  const appName = 'Liat Kucing Maem'
 
   onBeforeMount(() => {
     // scroll to top
@@ -38,11 +37,11 @@
         Jadi, kalian bisa nonton kucing-kucing ITB sambil kasih makan mereka dari jarak jauh. 
         Scroll ke bawah untuk liat live stream dari kamera-kamera kami!
       </p>
+      <NuxtLink to="/cam/1" class="mt-4 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-[-4px_4px] hover:mt-3 hover:ml-1">Liat kucing maem!</NuxtLink>
       <!-- RIGHT DECOR -->
       <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4">
         <img src="/decors/arrows.svg" alt="" />
       </div>
-      <!-- <NuxtLink to="/test" class="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md">Liat Kucing</NuxtLink> -->
     </div>
   </div>
 </template>
