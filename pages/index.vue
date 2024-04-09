@@ -37,7 +37,7 @@
       </p>
       <NuxtLink to="/cam/1" class="mt-4 px-6 py-3 bg-primary text-black rounded-full font-header w-fit hover:shadow-[-4px_4px] hover:mt-3 hover:ml-1">Liat kucing maem!</NuxtLink>
       <!-- RIGHT DECOR -->
-      <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4 hidden lg:block">
+      <div class="absolute right-32 bottom-0 border-r-2 pt-12 pr-4 hidden lg:block border-white">
         <img src="/decors/arrows.svg" alt="" />
       </div>
     </div>
