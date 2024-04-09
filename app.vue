@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="selection:text-white selection:bg-primary">
     <NuxtPage />
   </div>
 </template>

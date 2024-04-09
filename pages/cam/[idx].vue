@@ -8,6 +8,10 @@
 
   console.log(route.params.idx)
 
+  if (route.params.idx == "NaN") {
+    navigateTo('/')
+  }
+
   const throttle = (cb, timeout) => {
     let lastCall = 0;
 
@@ -30,6 +34,7 @@
       }
     } else if (scroll < -80) {
       if (parseInt(route.params.idx, 10) <= 1) {
+        console.log('masuk')
         navigateTo('/')
       } else {
         navigateTo(`/cam/${(parseInt(route.params.idx, 10) - 1)}`)

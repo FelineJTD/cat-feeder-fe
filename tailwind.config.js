@@ -9,7 +9,17 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
+    },
+    extend: {
+      colors: {
+        primary: "#FF8000",
+      }
+    },
   },
   plugins: [],
 }

@@ -23,9 +23,26 @@
 <template>
   <div>
     <img src="https://picsum.photos/1920/1080" alt="Background" class="fixed top-0 left-0 h-screen w-full object-cover -z-10" />
-    <div class="h-[calc(100vh+1px)] w-full flex flex-col justify-center -pt-[1px] px-24 bg-neutral-950/50">
-      <h1 class="text-3xl font-bold text-white">{{appName}}</h1>
-      <NuxtLink to="/test" class="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md">Liat Kucing</NuxtLink>
+    <div class="h-[calc(100vh+1px)] w-full flex flex-col -pt-[1px] px-32 bg-neutral-950/50 text-white">
+      <!-- COPYRIGHT (TOP BORDER) -->
+      <div class="absolute left-0 top-16 border-t-2 border-white w-[calc(100%-8rem)] pt-2">
+        <p class="text-xs text-right">Made with <3 for IF4051 by <span class="font-header text-primary">Clair, Addin, Felicia, Fandi, & Anggie</span> © 2024</p>
+      </div>
+      <!-- LOGO & DESCRIPTION (MAIN) -->
+      <div class="border-l-4 border-white h-1/2 flex items-end pl-12">
+        <img src="/logo.svg" alt="Liat Kucing Maem" class="h-[120px] aspect-auto w-fit" height="120" />
+      </div>
+      <p class="leading-9 lg:w-2/3 xl:w-1/2 mt-12">
+        Siapa sih yang gak suka liat kucing-kucing ITB? Sekarang, kamu gak usah datang ke kampus buat liat kucing! 
+        Website ini hadir dengan <span class="text-primary font-header text-2xl">live stream pos-pos makanan kucing</span> yang tersebar di seluruh kampus.
+        Jadi, kalian bisa nonton kucing-kucing ITB sambil kasih makan mereka dari jarak jauh. 
+        Scroll ke bawah untuk liat live stream dari kamera-kamera kami!
+      </p>
+      <!-- RIGHT DECOR -->
+      <div class="absolute right-32 bottom-0 border-r-2 pt-4 pr-4">
+        <img src="/decors/arrows.svg" alt="" />
+      </div>
+      <!-- <NuxtLink to="/test" class="mt-4 px-4 py-2 bg-primary-500 text-white rounded-md">Liat Kucing</NuxtLink> -->
     </div>
   </div>
 </template>
