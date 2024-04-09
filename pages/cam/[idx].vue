@@ -28,7 +28,9 @@
       <!-- KASIH MAKAN BUTTON -->
       <button class="rounded-full text-4xl h-52 w-52 bg-primary font-header text-black shadow-[-8px_8px] hover:shadow-none hover:-translate-x-2 -translate-y-2 hover:translate-y-0" @click="feed">Kasih makan</button>
       <!-- LOGO -->
-      <img src="/logo.svg" alt="Liat Kucing Maem" class="h-[60px] w-fit absolute top-16 object-left object-contain" height="60" />
+      <NuxtLink to="/" class="h-[60px] w-fit absolute top-16">
+        <img src="/logo.svg" alt="Liat Kucing Maem" class="h-full w-full object-left object-contain" height="60" />
+      </NuxtLink>
       <!-- RIGHT DECOR -->
       <div class="absolute right-32 top-0 border-r-2 border-white hidden lg:block h-1/3" />
     </div>
