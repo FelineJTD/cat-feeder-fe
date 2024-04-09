@@ -14,6 +14,12 @@ export default {
       md: "768px",
       lg: "976px",
       xl: "1440px",
+      portrait: {
+        'raw': '(orientation: portrait)'
+      },
+      'mobile-landscape': {
+        'raw': '(orientation: landscape) and (max-width: 960px)'
+      },
     },
     extend: {
       colors: {
