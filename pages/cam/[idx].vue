@@ -7,7 +7,7 @@
 
   const indicatorArr = Array(numOfCams).fill(0).map((_, idx) => idx+1)
 
-  const camName = "Labtek V"
+  const camName = "Labtek " + route.params.idx
   const viewer = 0
 
   const time = ref(new Date().toLocaleTimeString())
