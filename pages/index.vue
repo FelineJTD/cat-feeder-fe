@@ -22,7 +22,7 @@
 <template>
   <div>
     <img src="https://picsum.photos/1920/1080" alt="Background" class="fixed top-0 left-0 h-screen w-full object-cover -z-10" />
-    <div class="h-[calc(100vh+0.5px)] w-full flex flex-col mobile-landscape:flex-row mobile-landscape:gap-12 mobile-landscape:py-20 -pt-[0.5px] py-48 md:py-0 px-8 mobile-landscape:px-8 md:px-16 lg:px-32 bg-neutral-950/50 text-white">
+    <div class="min-h-screen mobile-landscape:min-h-screen mobile-landscape:h-fit md:h-[calc(100vh+0.5px)] w-full flex flex-col mobile-landscape:flex-row mobile-landscape:gap-12 mobile-landscape:pt-20 mobile-landscape:pb-8 md:-pt-[0.5px] py-48 md:py-0 px-8 mobile-landscape:px-8 md:px-16 lg:px-32 bg-neutral-950/50 text-white">
       <!-- COPYRIGHT (TOP BORDER) -->
       <div class="absolute left-0 top-16 mobile-landscape:top-8 border-t-2 border-white w-[calc(100%-2rem)] mobile-landscape:w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] pt-2">
         <p class="text-xs text-right">Made with &lt;3 for IF4051 by <span class="font-header text-primary"><br class="md:hidden mobile-landscape:hidden" />Clair, Addin, Felicia, Fandi, & Anggie</span> © 2024</p>
