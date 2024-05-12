@@ -1,13 +1,28 @@
 <script setup>
-// define variable `open` with initial value `false`
 import { ref } from "vue";
+
+const props = defineProps({
+  isOpen: Boolean
+});
+
+const emits = defineEmits(["closePanel"]);
+
+const closePanel = () => {
+  emits("closePanel");
+};
 
 const isLogin = ref(true);
 </script>
 
 <template>
-  <dialog open class="mt-12">
+  <dialog :open="props.isOpen" class="mt-12">
     <Panel class="min-w-[32rem]">
+      <button
+        @click="closePanel"
+        class="absolute right-1 top-0 hover:text-primary p-2 text-2xl"
+      >
+        x
+      </button>
       <div v-if="isLogin">
         <h1 class="text-2xl mb-2">Log in</h1>
         <slot></slot>
@@ -19,7 +34,12 @@ const isLogin = ref(true);
             name="password"
             class="block"
           />
-          <button type="submit" class="block">Log in</button>
+          <button
+            type="submit"
+            class="block mt-2 px-4 py-2 self-end bg-primary text-black rounded-full"
+          >
+            Log in
+          </button>
         </form>
         <p>
           No account yet?
@@ -44,7 +64,12 @@ const isLogin = ref(true);
             name="password"
             class="block"
           />
-          <button type="submit" class="block">Sign up</button>
+          <button
+            type="submit"
+            class="block mt-2 px-4 py-2 self-end bg-primary text-black rounded-full"
+          >
+            Sign up
+          </button>
         </form>
         <p>
           Have an account?
@@ -80,9 +105,5 @@ const isLogin = ref(true);
 <style scoped>
 input {
   @apply w-full p-2 mb-2 border border-black/20;
-}
-
-button {
-  @apply px-4 py-2 self-end bg-primary text-black rounded-full;
 }
 </style>

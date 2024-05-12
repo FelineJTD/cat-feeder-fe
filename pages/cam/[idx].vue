@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const numOfCams = 2;
+const isOpen = ref(true);
 
 const indicatorArr = Array(numOfCams)
   .fill(0)
@@ -15,7 +16,11 @@ const viewer = 0;
 const time = ref(new Date().toLocaleTimeString());
 
 const feed = () => {
-  alert("Kucing berhasil diberi makan!");
+  isOpen.value = !isOpen.value;
+};
+
+const closePanel = () => {
+  isOpen.value = false;
 };
 
 // CLOCK
@@ -29,7 +34,7 @@ onMounted(() => {
 <template>
   <div>
     <!-- Login -->
-    <LoginPanel />
+    <LoginPanel :isOpen="isOpen" @closePanel="closePanel" />
 
     <img
       src="https://picsum.photos/1920/1081"
