@@ -54,7 +54,7 @@ onBeforeMount(() => {
           v-if="totalDonationData"
           :data="totalDonationData"
         />
-        <div class="flex mt-12">
+        <div class="flex mt-16 gap-24">
           <CardsCardLocationStats
             v-for="(loc, idx) in locationData"
             :key="loc._id"
