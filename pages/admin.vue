@@ -1,4 +1,18 @@
-<script setup></script>
+<script setup>
+const totalDonationData = ref(null);
+onBeforeMount(() => {
+  fetch(import.meta.env.VITE_BACKEND_URL + "/dashboard/donation_transactions", {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      totalDonationData.value = data.data;
+    });
+});
+</script>
 
 <template>
   <div class="min-h-screen bg-[#2B2B2B] text-white">
@@ -21,7 +35,10 @@
         </div>
       </div>
       <div class="bg-[#2B2B2B] w-full rounded-3xl mt-12 p-8">
-        <CardsCardLineChart />
+        <CardsCardLineChart
+          v-if="totalDonationData"
+          :data="totalDonationData"
+        />
         <CardsCardLocationStats />
       </div>
     </div>
