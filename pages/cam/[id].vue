@@ -7,9 +7,7 @@ const isOpen = ref(false);
 const locations = ref(null);
 const numOfCams = ref(0);
 const currIndex = ref(0);
-const locationId = ref(route.params.id);
-
-const viewer = 0;
+// const viewer = ref(0);
 
 const time = ref(new Date().toLocaleTimeString());
 
@@ -58,7 +56,7 @@ onMounted(() => {
     <FeedPanel
       v-if="isOpen"
       :isOpen="isOpen"
-      :locationId="locationId"
+      :locationId="locations[currIndex]._id"
       @closePanel="closePanel"
     />
 

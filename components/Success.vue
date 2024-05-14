@@ -3,12 +3,11 @@ const props = defineProps({
   closePanel: Function,
 });
 
-// onMounted(() => {
-//   console.log("Success panel mounted");
-//   setTimeout(() => {
-//     props.closePanel();
-//   }, 3000);
-// });
+onMounted(() => {
+  setTimeout(() => {
+    props.closePanel();
+  }, 3000);
+});
 </script>
 
 <template>
@@ -21,8 +20,6 @@ const props = defineProps({
   <div>
     <h1 class="text-2xl mb-2">Sukses kasih makan!</h1>
     <p>Terima kasih sudah memberi makan kucing.</p>
-    <div
-      class="w-full animate-timeout bg-gradient-to-r from-primary to-primary h-2 mt-2"
-    />
+    <div class="animate-timeout bg-primary h-1 mt-4" />
   </div>
 </template>

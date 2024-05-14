@@ -29,17 +29,15 @@ export default {
         main: "0 4px 6px -1px rgba(255, 128, 0, 0.1), 0 2px 4px -1px rgba(255, 128, 0, 0.06)",
       },
       animation: {
-        timeout: "timeout 3s",
+        timeout: "timeout 3s linear",
       },
       keyframes: {
         timeout: {
           "0%": {
-            backgroundSize: "100% 100%",
-            backgroundPosition: "bottom left",
+            width: "100%",
           },
           "100%": {
-            backgroundSize: "0% 100%",
-            backgroundPosition: "bottom left",
+            width: "0%",
           },
         },
       },

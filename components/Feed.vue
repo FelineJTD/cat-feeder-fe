@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 const props = defineProps({
   onSuccess: Function,
+  locationId: String,
 });
 
 const error = ref("");
@@ -21,8 +22,8 @@ const feed = async (e) => {
         Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
-        location_id: "662b81819d9b87970c50d1ca",
-        amount: 20,
+        location_id: props.locationId,
+        amount: fd.get("amount"),
       }),
     }
   );

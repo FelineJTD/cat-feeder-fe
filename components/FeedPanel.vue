@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 const props = defineProps({
   isOpen: Boolean,
+  locationId: String,
 });
 
 const emits = defineEmits(["closePanel"]);
@@ -43,6 +44,7 @@ const error = ref("");
       <Feed
         v-else-if="state === 'feed'"
         :on-success="() => (state = 'success')"
+        :locationId="props.locationId"
       />
       <Success
         v-else-if="state === 'success'"
