@@ -1,16 +1,14 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const numOfCams = 2;
 const isOpen = ref(false);
+const locations = ref(null);
+const numOfCams = ref(0);
+const currIndex = ref(0);
+const locationId = ref(route.params.id);
 
-const indicatorArr = Array(numOfCams)
-  .fill(0)
-  .map((_, idx) => idx + 1);
-
-const camName = "Labtek " + route.params.idx;
 const viewer = 0;
 
 const time = ref(new Date().toLocaleTimeString());
@@ -23,6 +21,30 @@ const closePanel = () => {
   isOpen.value = false;
 };
 
+onBeforeMount(() => {
+  locations.value = JSON.parse(sessionStorage.getItem("locations"));
+  if (locations.value) {
+    numOfCams.value = locations.value.length;
+    currIndex.value = locations.value.findIndex(
+      (loc) => loc._id === route.params.id
+    );
+  } else {
+    fetch(import.meta.env.VITE_BACKEND_URL + "/locations")
+      .then((res) => res.json())
+      .then((data) => {
+        sessionStorage.setItem("locations", JSON.stringify(data.data));
+        locations.value = data.data;
+        numOfCams.value = locations.value.length;
+        currIndex.value = locations.value.findIndex(
+          (loc) => loc._id === route.params.id
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+});
+
 // CLOCK
 onMounted(() => {
   setInterval(() => {
@@ -33,7 +55,12 @@ onMounted(() => {
 
 <template>
   <div>
-    <FeedPanel v-if="isOpen" :isOpen="isOpen" @closePanel="closePanel" />
+    <FeedPanel
+      v-if="isOpen"
+      :isOpen="isOpen"
+      :locationId="locationId"
+      @closePanel="closePanel"
+    />
 
     <img
       src="https://picsum.photos/1920/1081"
@@ -50,14 +77,10 @@ onMounted(() => {
           class="flex flex-col gap-2 items-center mr-4 mobile-landscape:mr-4 md:mr-12"
         >
           <div
-            v-for="idx in indicatorArr"
-            :key="idx"
+            v-for="(loc, idx) in locations"
+            :key="loc._id"
             class="h-20 w-1"
-            :class="
-              idx === parseInt(route.params.idx)
-                ? 'bg-primary'
-                : 'bg-white opacity-50'
-            "
+            :class="idx === currIndex ? 'bg-primary' : 'bg-white opacity-50'"
           />
         </div>
         <div>
@@ -66,8 +89,7 @@ onMounted(() => {
           >
             <NuxtLink
               :to="
-                '/cam/' +
-                (((parseInt(route.params.idx) - 2 + numOfCams) % numOfCams) + 1)
+                '/cam/' + locations[(currIndex - 1 + numOfCams) % numOfCams]._id
               "
               class="text-primary font-header text-2xl hover:-translate-x-2 p-2 duration-150 opacity-50 hover:opacity-100"
             >
@@ -80,7 +102,7 @@ onMounted(() => {
               />
             </NuxtLink>
             <NuxtLink
-              :to="'/cam/' + ((parseInt(route.params.idx) % numOfCams) + 1)"
+              :to="'/cam/' + locations[(currIndex + 1) % numOfCams]._id"
               class="text-primary font-header text-2xl hover:translate-x-2 p-2 duration-150 opacity-50 hover:opacity-100"
             >
               <img
@@ -95,12 +117,12 @@ onMounted(() => {
           <h1
             class="text-primary mt-0 mobile-landscape:mt-0 md:mt-4 mobile-landscape:text-3xl"
           >
-            {{ camName }}
+            {{ locations[currIndex].name }}
           </h1>
           <div class="flex text-white flex-col md:flex-row">
             <p class="min-w-24 w-fit">{{ time }}</p>
-            <p class="hidden md:inline">◦ &nbsp;&nbsp;</p>
-            <p>{{ viewer }} orang menonton</p>
+            <!-- <p class="hidden md:inline">◦ &nbsp;&nbsp;</p> -->
+            <!-- <p>{{ viewer }} orang menonton</p> -->
           </div>
         </div>
       </div>
