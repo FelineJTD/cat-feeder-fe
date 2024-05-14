@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const numOfCams = 2;
-const isOpen = ref(true);
+const isOpen = ref(false);
 
 const indicatorArr = Array(numOfCams)
   .fill(0)
