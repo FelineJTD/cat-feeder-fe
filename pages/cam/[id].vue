@@ -9,8 +9,6 @@ const numOfCams = ref(0);
 const currIndex = ref(0);
 // const viewer = ref(0);
 
-const time = ref(new Date().toLocaleTimeString());
-
 const feed = () => {
   isOpen.value = !isOpen.value;
 };
@@ -41,13 +39,6 @@ onBeforeMount(() => {
         console.error(err);
       });
   }
-});
-
-// CLOCK
-onMounted(() => {
-  setInterval(() => {
-    time.value = new Date().toLocaleTimeString();
-  }, 1000);
 });
 </script>
 
@@ -118,7 +109,7 @@ onMounted(() => {
             {{ locations[currIndex].name }}
           </h1>
           <div class="flex text-white flex-col md:flex-row">
-            <p class="min-w-24 w-fit">{{ time }}</p>
+            <Time class="min-w-24 w-fit" />
             <!-- <p class="hidden md:inline">◦ &nbsp;&nbsp;</p> -->
             <!-- <p>{{ viewer }} orang menonton</p> -->
           </div>
