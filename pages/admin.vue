@@ -1,6 +1,4 @@
-<script setup>
-import CardLineChart from "~/components/Cards/CardLineChart.vue";
-</script>
+<script setup></script>
 
 <template>
   <div class="min-h-screen bg-[#2B2B2B] text-white">
@@ -23,7 +21,8 @@ import CardLineChart from "~/components/Cards/CardLineChart.vue";
         </div>
       </div>
       <div class="bg-[#2B2B2B] w-full rounded-3xl mt-12 p-8">
-        <CardLineChart />
+        <CardsCardLineChart />
+        <CardsCardLocationStats />
       </div>
     </div>
   </div>
