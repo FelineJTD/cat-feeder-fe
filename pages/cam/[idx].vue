@@ -33,7 +33,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <FeedPanel :isOpen="isOpen" @closePanel="closePanel" />
+    <FeedPanel v-if="isOpen" :isOpen="isOpen" @closePanel="closePanel" />
 
     <img
       src="https://picsum.photos/1920/1081"
