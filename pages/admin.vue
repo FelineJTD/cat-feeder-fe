@@ -16,7 +16,9 @@ onBeforeMount(() => {
 
 <template>
   <div class="min-h-screen bg-[#2B2B2B] text-white">
-    <div class="w-full h-60 bg-[#565656] absolute top-0" />
+    <div
+      class="w-full h-60 bg-[#565656] bg-[url('/decors/graph-paper.png')] absolute top-0"
+    />
 
     <div
       class="py-16 mobile-landscape:py-8 px-8 mobile-landscape:px-8 md:px-16 lg:px-32 z-10 relative"
