@@ -1,5 +1,7 @@
 <script setup>
 const totalDonationData = ref(null);
+const locationData = ref(null);
+
 onBeforeMount(() => {
   fetch(import.meta.env.VITE_BACKEND_URL + "/dashboard/donation_transactions", {
     method: "GET",
@@ -10,6 +12,17 @@ onBeforeMount(() => {
     .then((res) => res.json())
     .then((data) => {
       totalDonationData.value = data.data;
+    });
+
+  fetch(import.meta.env.VITE_BACKEND_URL + "/locations", {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      locationData.value = data.data;
     });
 });
 </script>
@@ -41,7 +54,15 @@ onBeforeMount(() => {
           v-if="totalDonationData"
           :data="totalDonationData"
         />
-        <CardsCardLocationStats />
+        <div class="flex mt-12">
+          <CardsCardLocationStats
+            v-for="(loc, idx) in locationData"
+            :key="loc._id"
+            :data="loc"
+            :idx="idx"
+          />
+          <button>Add location</button>
+        </div>
       </div>
     </div>
   </div>
