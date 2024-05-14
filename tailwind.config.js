@@ -15,10 +15,10 @@ export default {
       lg: "976px",
       xl: "1440px",
       portrait: {
-        'raw': '(orientation: portrait)'
+        raw: "(orientation: portrait)",
       },
-      'mobile-landscape': {
-        'raw': '(orientation: landscape) and (max-width: 960px)'
+      "mobile-landscape": {
+        raw: "(orientation: landscape) and (max-width: 960px)",
       },
     },
     extend: {
@@ -28,8 +28,22 @@ export default {
       boxShadow: {
         main: "0 4px 6px -1px rgba(255, 128, 0, 0.1), 0 2px 4px -1px rgba(255, 128, 0, 0.06)",
       },
+      animation: {
+        timeout: "timeout 3s",
+      },
+      keyframes: {
+        timeout: {
+          "0%": {
+            backgroundSize: "100% 100%",
+            backgroundPosition: "bottom left",
+          },
+          "100%": {
+            backgroundSize: "0% 100%",
+            backgroundPosition: "bottom left",
+          },
+        },
+      },
     },
   },
   plugins: [],
-}
-
+};

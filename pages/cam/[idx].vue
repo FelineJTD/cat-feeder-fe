@@ -33,8 +33,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <!-- Login -->
-    <LoginPanel :isOpen="isOpen" @closePanel="closePanel" />
+    <FeedPanel :isOpen="isOpen" @closePanel="closePanel" />
 
     <img
       src="https://picsum.photos/1920/1081"
