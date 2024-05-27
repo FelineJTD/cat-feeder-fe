@@ -12,39 +12,7 @@ const numOfCams = ref(0);
 const currIndex = ref(0);
 // const viewer = ref(0);
 const imageUrls = ref([]);
-
-const client = mqtt.connect({
-  host: "broker.hivemq.com",
-  port: 8000,
-  path: "/mqtt"
-});
-
-// const imageUrls = reactive({});
-
-client.on("connect", () => {
-  console.log("Connected to MQTT broker");
-  client.subscribe("lkm/cams", (err) => {
-    if (!err) {
-      console.log("Subscribed to lkm/cams");
-    }
-  });
-});
-
-client.on("message", (topic, message) => {
-  if (topic === "lkm/cams") {
-    const newImageTopic = "lkm/image-" + message.toString();
-    client.subscribe(newImageTopic, (err) => {
-      if (!err) {
-        console.log(`Subscribed to ${newImageTopic}`);
-      }
-    });
-  } else {
-    const blob = new Blob([message], { type: "image/jpeg" });
-    const deviceId = topic.toString().split("-")[1];
-    console.log(`Received image for ${deviceId}`);
-    imageUrls.value[deviceId] = URL.createObjectURL(blob);
-  }
-});
+const client = ref(null);
 
 const feed = () => {
   isOpen.value = !isOpen.value;
@@ -78,9 +46,40 @@ onBeforeMount(() => {
   }
 });
 
-// onMounted(() => {
-//   imageUrls.value = useMqtt();
-// });
+onMounted(() => {
+  client.value = mqtt.connect({
+    host: "broker.hivemq.com",
+    port: 8000,
+    path: "/mqtt"
+  });
+
+  // const imageUrls = reactive({});
+
+  client.value.on("connect", () => {
+    console.log("Connected to MQTT broker");
+    client.value.subscribe("lkm/cams", (err) => {
+      if (!err) {
+        console.log("Subscribed to lkm/cams");
+      }
+    });
+  });
+
+  client.value.on("message", (topic, message) => {
+    if (topic === "lkm/cams") {
+      const newImageTopic = "lkm/image-" + message.toString();
+      client.value.subscribe(newImageTopic, (err) => {
+        if (!err) {
+          console.log(`Subscribed to ${newImageTopic}`);
+        }
+      });
+    } else {
+      const blob = new Blob([message], { type: "image/jpeg" });
+      const deviceId = topic.toString().split("-")[1];
+      console.log(`Received image for ${deviceId}`);
+      imageUrls.value[deviceId] = URL.createObjectURL(blob);
+    }
+  });
+});
 </script>
 
 <template>
