@@ -35,7 +35,11 @@ const addLocation = () => {
     method: "POST",
     headers: {
       Authorization: localStorage.getItem("token")
-    }
+    },
+    body: JSON.stringify({
+      name: "New Location",
+      description: "New Location Description"
+    })
   })
     .then((res) => res.json())
     .then((data) => {
@@ -46,10 +50,6 @@ const addLocation = () => {
 
 <template>
   <div class="min-h-screen bg-[#2B2B2B] text-white">
-    <div class="bg-white text-black">
-      {{ totalDonationData }}
-      {{ locationData }}
-    </div>
     <div
       class="w-full h-60 bg-[#565656] bg-[url('/decors/graph-paper.png')] absolute top-0"
     />
@@ -82,7 +82,7 @@ const addLocation = () => {
               :data="loc"
               :idx="idx"
             />
-            <button>Add location</button>
+            <!-- <button>Add location</button> -->
           </div>
         </div>
       </client-only>
