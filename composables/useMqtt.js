@@ -35,7 +35,5 @@ client.on("message", (topic, message) => {
 });
 
 export function useMqtt() {
-  return {
-    imageUrls
-  };
+  return imageUrls;
 }

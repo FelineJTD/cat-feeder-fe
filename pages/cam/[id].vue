@@ -9,7 +9,7 @@ const locations = ref(null);
 const numOfCams = ref(0);
 const currIndex = ref(0);
 // const viewer = ref(0);
-const { imageUrls } = useMqtt();
+const imageUrls = ref([]);
 
 const feed = () => {
   isOpen.value = !isOpen.value;
@@ -41,6 +41,7 @@ onBeforeMount(() => {
         console.error(err);
       });
   }
+  imageUrls.value = useMqtt();
 });
 </script>
 
