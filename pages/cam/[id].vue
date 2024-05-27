@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeMount, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import { useMqtt } from "~/composables/useMqtt";
 
 const route = useRoute();
 const isOpen = ref(false);
@@ -8,6 +9,7 @@ const locations = ref(null);
 const numOfCams = ref(0);
 const currIndex = ref(0);
 // const viewer = ref(0);
+const { imageUrls } = useMqtt();
 
 const feed = () => {
   isOpen.value = !isOpen.value;
@@ -52,7 +54,7 @@ onBeforeMount(() => {
     />
 
     <img
-      src="https://picsum.photos/1920/1081"
+      :src="imageUrls[currIndex + 1] || 'https://picsum.photos/1920/1080'"
       alt="Background"
       class="fixed top-0 left-0 h-screen w-full object-cover -z-10"
     />
