@@ -1,4 +1,4 @@
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 import mqtt from "mqtt";
 
 const client = mqtt.connect({

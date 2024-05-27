@@ -1,7 +1,9 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
-import { useMqtt } from "../../composables/useMqtt";
+import { reactive } from "vue";
+import mqtt from "mqtt";
+// import { useMqtt } from "../../composables/useMqtt";
 
 const route = useRoute();
 const isOpen = ref(false);
