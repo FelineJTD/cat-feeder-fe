@@ -48,6 +48,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   client.value = mqtt.connect({
+    protocol: "wss",
     host: "broker.hivemq.com",
     port: 8000,
     path: "/mqtt"
