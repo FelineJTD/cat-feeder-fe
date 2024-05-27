@@ -1,7 +1,7 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
-import { useMqtt } from "~/composables/useMqtt";
+// import { useMqtt } from "~/composables/useMqtt";
 
 const route = useRoute();
 const isOpen = ref(false);
@@ -41,8 +41,11 @@ onBeforeMount(() => {
         console.error(err);
       });
   }
-  imageUrls.value = useMqtt();
 });
+
+// onMounted(() => {
+//   imageUrls.value = useMqtt();
+// });
 </script>
 
 <template>
