@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useMqtt } from "~/composables/useMqtt";
 
@@ -8,9 +8,7 @@ const isOpen = ref(false);
 const locations = ref(null);
 const numOfCams = ref(0);
 const currIndex = ref(0);
-// const viewer = ref(0);
-const imageUrls = ref([]);  
-// const { imageUrls } = useMqtt();
+const imageUrls = ref([]);
 
 const feed = () => {
   isOpen.value = !isOpen.value;
@@ -47,7 +45,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div>
+  <div v-if="locations">
     <FeedPanel
       v-if="isOpen"
       :isOpen="isOpen"
