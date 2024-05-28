@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 const props = defineProps({
   onSuccess: Function,
-  locationId: String,
+  locationId: String
 });
 
 const error = ref("");
@@ -14,17 +14,17 @@ const feed = async (e) => {
   const fd = new FormData(e.target);
 
   const res = await fetch(
-    import.meta.env.VITE_BACKEND_URL + "/food_transactions",
+    import.meta.env.VITE_BACKEND_URL + "/donation_transactions",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
+        Authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
         location_id: props.locationId,
-        amount: fd.get("amount"),
-      }),
+        amount: fd.get("amount")
+      })
     }
   );
 
