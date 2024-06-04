@@ -61,7 +61,6 @@ onBeforeMount(() => {
             :data="loc"
             :idx="idx"
           />
-          <button>Add location</button>
         </div>
       </div>
     </div>
