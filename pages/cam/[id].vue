@@ -1,18 +1,19 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onBeforeMount, ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 // import { reactive } from "vue";
-import mqtt from "mqtt";
+// import mqtt from "mqtt";
 // import { useMqtt } from "../../composables/useMqtt";
+import { getClient, subscribeToTopic } from "../../composables/mqttClient";
 
 const route = useRoute();
 const isOpen = ref(false);
+const isFeed = ref(false);
 const locations = ref(null);
 const numOfCams = ref(0);
 const currIndex = ref(0);
 // const viewer = ref(0);
 const imageUrls = ref([]);
-const client = ref(null);
 
 const feed = () => {
   isOpen.value = !isOpen.value;
@@ -47,32 +48,18 @@ onBeforeMount(() => {
 });
 
 onMounted(() => {
-  client.value = mqtt.connect({
-    protocol: "wss",
-    host: "broker.hivemq.com",
-    port: 8884,
-    path: "/mqtt"
-  });
+  const client = getClient();
 
-  // const imageUrls = reactive({});
-
-  client.value.on("connect", () => {
-    console.log("Connected to MQTT broker");
-    client.value.subscribe("lkm/cams", (err) => {
-      if (!err) {
-        console.log("Subscribed to lkm/cams");
-      }
-    });
-  });
-
-  client.value.on("message", (topic, message) => {
+  client.on("message", (topic, message) => {
     if (topic === "lkm/cams") {
       const newImageTopic = "lkm/image-" + message.toString();
-      client.value.subscribe(newImageTopic, (err) => {
-        if (!err) {
-          console.log(`Subscribed to ${newImageTopic}`);
-        }
-      });
+      subscribeToTopic(newImageTopic);
+      const newSensorTopic = "lkm/sensor-" + message.toString();
+      subscribeToTopic(newSensorTopic);
+    } else if (topic.startsWith("lkm/sensor-")) {
+      const deviceId = topic.toString().split("-")[1];
+      console.log(`Received sensor data for ${deviceId}`);
+      isFeed.value = message.toString() === "true";
     } else {
       const blob = new Blob([message], { type: "image/jpeg" });
       const deviceId = topic.toString().split("-")[1];
@@ -94,10 +81,23 @@ onMounted(() => {
       />
 
       <img
-        :src="imageUrls[currIndex + 1] || 'https://picsum.photos/1920/1080'"
+        :src="
+          isFeed
+            ? imageUrls[currIndex + 1] || 'https://picsum.photos/1920/1080'
+            : 'https://picsum.photos/1920/1080'
+        "
         alt="Background"
         class="fixed top-0 left-0 h-screen w-full object-cover -z-10"
       />
+      <div
+        v-if="!isFeed"
+        class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-5"
+      >
+        <p class="flex h-full text-2xl text-white items-center justify-center">
+          Lagi gak ada kucing, nih :'D
+        </p>
+      </div>
+
       <div
         class="h-screen w-full flex items-end justify-between py-16 mobile-landscape:py-8 px-8 mobile-landscape:px-8 md:px-16 lg:px-32 text-white"
       >
